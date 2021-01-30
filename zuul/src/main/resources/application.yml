@@ -1,0 +1,49 @@
+spring:
+  boot:
+    admin:
+      client:
+        urk: http://loaclhost:8080/
+  application:
+    name: zuul
+
+#注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7900/eureka/
+    # 刷新注册表间隔时间
+    registry-fetch-interval-seconds: 10
+    enabled: true
+    healthcheck:
+      enabled: true
+  instance:
+    # 心跳续约时间
+    lease-renewal-interval-in-seconds: 10
+    # 缺失心跳过期时间
+    lease-expiration-duration-in-seconds: 10
+
+consumer:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+# zuul的一些配置
+management:
+  endpoints:
+    health:
+      show-details: always
+      enabled: true
+    routes:
+      enabled: true
+    web:
+      exposure:
+        include: '*'
+
+# 自定义映射
+zuul:
+  routes:
+    xx:
+      path: /xx/**
+      url: http://www.yzh.cool
+
+server:
+  port: 8088

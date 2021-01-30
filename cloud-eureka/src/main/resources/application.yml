@@ -1,0 +1,54 @@
+
+spring:
+  application:
+    name: eureka
+  security:
+    user:
+      name: admin
+      password: admin
+
+eureka:
+  client:
+    register-with-eureka: true # 解决unavailable-replicas问题
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-7900:7900/eureka/,http://eureka-7901:7901/eureka/,http://eureka-7902:7902/eureka/
+    registry-fetch-interval-seconds: 10 # 默认30
+  server:
+    #自我保护看自己情况
+    enable-self-preservation: false
+    #续约阈值，和自我保护相关
+    renewal-percent-threshold: 0.85
+    #server剔除过期服务的时间间隔
+    eviction-interval-timer-in-ms: 1000
+    # 关闭从readOnly读注册表
+    use-read-only-response-cache: false
+    # readWrite 和 readOnly 同步时间间隔。(默认30s)
+    response-cache-update-interval-ms: 1000
+
+---
+spring:
+  profiles: 7900
+server:
+  port: 7900
+eureka:
+  instance:
+    hostname: eureka-7900
+
+---
+spring:
+  profiles: 7901
+server:
+  port: 7901
+eureka:
+  instance:
+    hostname: eureka-7901
+
+---
+spring:
+  profiles: 7902
+server:
+  port: 7902
+eureka:
+  instance:
+    hostname: eureka-7902

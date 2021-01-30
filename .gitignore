@@ -1,0 +1,12 @@
+# Project exclude paths
+/admin/target/
+/cloud-eureka/target/
+/config/target/
+/config-client/target/
+/csrf/target/
+/eureka-consumer/target/
+/eureka-provider/target/
+/user-api/target/
+/user-consumer/target/
+/user-provider/target/
+/zuul/target/

@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: eureka-provider
+
+#注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7900/eureka/
+    # 刷新注册表间隔时间
+    registry-fetch-interval-seconds: 10
+    enabled: true
+    healthcheck:
+      enabled: true
+  instance:
+    # 心跳续约时间
+    lease-renewal-interval-in-seconds: 10
+    # 缺失心跳过期时间
+    lease-expiration-duration-in-seconds: 10
+
+management:
+  endpoints:
+    jmx:
+      exposure:
+        include: '*'
+  endpoint:
+    shutdown:
+      enabled: true # 可以远程关闭
+
+---
+spring:
+  profiles: provider_1
+server:
+  port: 8001
+
+---
+spring:
+  profiles: provider_2
+server:
+  port: 8011

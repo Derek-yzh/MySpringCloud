@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: user-provider
+  # zipkin
+  zipkin:
+    base-url: http://loaclhost:9411/
+  # sleuth 采用比例
+  sleuth:
+    sampler:
+      rate: 1
+
+#注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7900/eureka/
+    # 刷新注册表间隔时间
+    registry-fetch-interval-seconds: 10
+    enabled: true
+    healthcheck:
+      enabled: true
+  instance:
+    # 心跳续约时间
+    lease-renewal-interval-in-seconds: 10
+    # 缺失心跳过期时间
+    lease-expiration-duration-in-seconds: 10
+
+---
+server:
+  port: 8020
+spring:
+  profiles: user-provider-1
+
+---
+server:
+  port: 8021
+spring:
+  profiles: user-provider-2
