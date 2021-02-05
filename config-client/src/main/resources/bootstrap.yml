@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      uri: http://localhost:9999/
+      discovery:
+        enabled: true
+        service-id: config
+      #label: master #目录
+      name: consumer #name
+      profile: uat #环境
+      #Located environment: name=consumer, profiles=[uat], label=null, version=243aa2acb68063a9e30f1e692bffb3953d608c4a, state=null
+
+#注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7900/eureka/
+    # 刷新注册表间隔时间
+    registry-fetch-interval-seconds: 10
+    enabled: true
+  instance:
+    # 心跳续约时间
+    lease-renewal-interval-in-seconds: 10
+    # 缺失心跳过期时间
+    lease-expiration-duration-in-seconds: 10

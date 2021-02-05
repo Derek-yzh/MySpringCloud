@@ -3,9 +3,12 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Derek-yzh/SpringCloud-Config-Center.git
+          uri: https://github.com/Derek-yzh/SpringCloud-Config-Center
           default-label: main
           search-paths: /**
+          username:
+          password:
+          timeout: 15
   application:
     name: config
 
