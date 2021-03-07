@@ -1,4 +1,4 @@
-package com.example.gateway;
+package com.example.gateway.rule;
 
 import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.AbstractLoadBalancerRule;
@@ -20,7 +20,7 @@ public class MyRule extends AbstractLoadBalancerRule {
     @Override
     public Server choose(Object key) {
         List<Server> servers = this.getLoadBalancer().getReachableServers();
-        System.out.println("Reachable servers: " + servers);
+        System.out.println("自定义路由规则/Reachable servers: " + servers);
         return servers.get(0);
     }
 

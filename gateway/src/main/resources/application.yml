@@ -13,12 +13,27 @@ spring:
           filters: ##过滤几级
             - StripPrefix=1
 
-        - id: provider
+        - id: w1
           predicates:
             - Path=/provider/**
+            - Weight=service,20
           uri: lb://user-provider
           filters:
             - StripPrefix=1
+        - id: w2
+          predicates:
+            - Path=/provider/**
+            - Weight=service,80
+          uri: lb://gateway
+          filters:
+            - StripPrefix=1
+            ##限流
+#            - name: RequestRateLimiter
+#              args:
+#                rate-limiter: "#{@defaultRateLimiter}"
+#                ##key-resolver: "#{@userKeyResolver}"
+#                ##一秒两个令牌
+#                default-rate-limit.permitsPerSecond: 0.5
 
       discovery:
         locator:
@@ -28,7 +43,10 @@ spring:
 ##自定义负载均衡策略
 user-provider:
   ribbon:
-    NFLoadBalancerRuleClassName: com.example.gateway.MyRule
+    NFLoadBalancerRuleClassName: com.example.gateway.rule.MyRule
+gateway:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.example.gateway.rule.MyRule
 
 ##注册中心
 eureka:

@@ -1,4 +1,4 @@
-package com.example.gateway;
+package com.example.gateway.filter;
 
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
@@ -23,13 +23,12 @@ import java.util.List;
  * @Description: 过滤器
  */
 @Component
-public class MyFilter implements Ordered, GlobalFilter {
+public class AuthFilter implements Ordered, GlobalFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
-        MultiValueMap<String, String> queryParams = request.getQueryParams();
-        List<String> list = queryParams.get("id");
+        List<String> list = request.getQueryParams().get("token");
         if (null == list || list.size() == 0) {
             //直接return 不再走接下来的filter
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
