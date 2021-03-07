@@ -1,0 +1,10 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: nacos-p
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8841
+        file-extension: yaml
