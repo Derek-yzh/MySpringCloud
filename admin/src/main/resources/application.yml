@@ -20,4 +20,7 @@ spring:
 #收件邮箱
 spring.boot.admin.notify.mail.to: 806463905@qq.com
 # 发件邮箱
-spring.boot.admin.notify.mail.from: 806463905@qq.com
+spring.boot.admin.notify.mail.from: zhenhua.yan@capgemini.com
+
+server:
+  port: 8080

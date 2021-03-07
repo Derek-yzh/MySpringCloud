@@ -26,7 +26,8 @@ public class UserController implements UserApi {
     @Override
     public String alive() {
         System.out.println("准备睡");
-        try { TimeUnit.MILLISECONDS.sleep(3000);} catch (InterruptedException e) {e.printStackTrace();}
+        //TODO 测试降级
+        //try { TimeUnit.MILLISECONDS.sleep(3000);} catch (InterruptedException e) {e.printStackTrace();}
         int i = count.getAndIncrement();
         System.out.println(port+"===第"+i+"次调用===");
         //int teat = 1/0;
